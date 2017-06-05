@@ -25,7 +25,14 @@ RUN cd /tmp && wget http://www.mpich.org/static/downloads/3.1.4/mpich-3.1.4.tar.
     tar xvfz mpich-3.1.4.tar.gz && cd mpich-3.1.4 && ./configure --prefix=/tmp/mpich && \
     make && make VERBOSE=1 && make install
 
-RUN apt-get install -y expect telnet curl
+RUN apt-get install -y expect telnet curl strace nano 
+
+RUN ulimit -n 1000 && \
+    apt-get update && \
+    apt-get install -yq software-properties-common && \
+    apt-get clean && \
+    apt-get autoclean && \
+    apt-get autoremove
 
 COPY entrypoint.sh /entrypoint.sh
 COPY pod_ip.py /pod_ip.py
