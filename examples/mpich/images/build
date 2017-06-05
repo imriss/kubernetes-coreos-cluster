@@ -1,1 +1,1 @@
-sudo docker build --tag continuse/mpich:v3 .
+sudo docker build --tag imriss/mpich:v3 .
