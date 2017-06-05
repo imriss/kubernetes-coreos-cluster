@@ -2,7 +2,7 @@ FROM       ubuntu:14.04
 MAINTAINER Reza Farrahi <imriss@ieee.org>
 MAINTAINER Jaewoo Lee <continuse@icloud.com>
 
-RUN apt-get update
+RUN apt-get update && apt-get upgrade
 
 RUN apt-get install -y openssh-server
 RUN mkdir /var/run/sshd
