@@ -18,12 +18,12 @@ RUN cd /root/.ssh && cp id_rsa.pub authorized_keys
 RUN apt-get install -y python-pip gfortran
 
 # ETCD for python
-RUN cd /tmp && wget https://github.com/jplana/python-etcd/archive/0.4.1.tar.gz && \
-    tar xvfz 0.4.1.tar.gz && cd python-etcd-0.4.1 && pip install .
+RUN cd /tmp && git clone https://github.com/jplana/python-etcd && cd python-etcd && \
+    python setup.py install
 
 # MPICH3 Install
-RUN cd /tmp && wget http://www.mpich.org/static/downloads/3.1.4/mpich-3.1.4.tar.gz && \
-    tar xvfz mpich-3.1.4.tar.gz && cd mpich-3.1.4 && ./configure --prefix=/tmp/mpich && \
+RUN cd /tmp && wget http://www.mpich.org/static/downloads/3.3a2/mpich-3.3a2.tar.gz && \
+    tar xvfz mpich-3.3a2.tar.gz && cd mpich-3.3a2 && ./configure --prefix=/tmp/mpich && \
     make && make VERBOSE=1 && make install
 
 RUN apt-get install -y expect telnet curl strace nano 
