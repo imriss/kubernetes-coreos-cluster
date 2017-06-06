@@ -1,0 +1,1 @@
+sudo docker build --tag imriss/mpich:v3 .
