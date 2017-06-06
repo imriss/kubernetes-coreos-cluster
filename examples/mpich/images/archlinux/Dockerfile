@@ -34,12 +34,6 @@ RUN cd / \
   && cd /calvin-base \
   && pip install --upgrade -r requirements.txt -r test-requirements.txt -e . 
 
-RUN pacman -Scc --noconfirm \
-  &&  rm /var/cache/pacman/pkg/* \
-  && paccache -rf \
-  && rm -rd /home/docker/sandground \
-  && echo `du /usr/lib -hd 1`
-
 # ETCD for python
 RUN cd /tmp \
   && git clone https://github.com/jplana/python-etcd \
@@ -57,6 +51,12 @@ RUN cd /tmp \
   && make install 
 
 RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm expect inetutils'
+
+RUN pacman -Scc --noconfirm \
+  &&  rm /var/cache/pacman/pkg/* \
+  && paccache -rf \
+  && rm -rd /home/docker/sandground \
+  && echo `du /usr/lib -hd 1`
 
 COPY entrypoint.sh /entrypoint.sh
 COPY pod_ip.py /pod_ip.py
