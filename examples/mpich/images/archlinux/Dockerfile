@@ -58,7 +58,7 @@ RUN cd /tmp \
 
 RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm expect inetutils'
 
-COPY ../entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 COPY pod_ip.py /pod_ip.py
 COPY known_hosts.py /known_hosts.py
 COPY auto_ssh.sh /auto_ssh.sh
