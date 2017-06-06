@@ -27,7 +27,7 @@ RUN chmod u+x /usr/sbin/aur.sh
 RUN chmod u+x /usr/sbin/add-aur
 RUN add-aur docker
 
-RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm gfortran'
+RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm gcc-fortran'
 
 RUN cd / \
   && git clone --depth=50 --branch=master https://github.com/EricssonResearch/calvin-base calvin-base \
