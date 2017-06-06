@@ -1,2 +1,2 @@
-cp ../entrypoint.sh ../pod_ip.py ../known_hosts.py ../auto_ssh.sh ../bash_profile .
+sudo cp ../entrypoint.sh ../pod_ip.py ../known_hosts.py ../auto_ssh.sh ../bash_profile .
 sudo docker build --tag imriss/mpich_ubuntu:v3 .
