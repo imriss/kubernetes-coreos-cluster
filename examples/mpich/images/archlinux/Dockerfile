@@ -56,7 +56,7 @@ RUN cd /tmp \
   && make VERBOSE=1 \
   && make install 
 
-RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm expect telnet'
+RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm expect inetutils'
 
 COPY entrypoint.sh /entrypoint.sh
 COPY pod_ip.py /pod_ip.py
