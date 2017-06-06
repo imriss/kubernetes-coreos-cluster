@@ -9,7 +9,9 @@ RUN  pacman -Syyu --noconfirm \
   && pacman -S findutils nano vi --needed --noconfirm \
   && pacman-db-upgrade \
   && export editor=nano \
-  && pacman -S --needed --noconfirm systemd python python-yaml wget python-pip openssh git curl 
+  && pacman -S --needed --noconfirm systemd python python-yaml wget python-pip openssh git curl jq \
+  && pip install --upgrade pip \
+  && pip install simplejson
 
 RUN echo 'root:root' |chpasswd
 
@@ -27,12 +29,7 @@ RUN chmod u+x /usr/sbin/aur.sh
 RUN chmod u+x /usr/sbin/add-aur
 RUN add-aur docker
 
-RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm gcc-fortran'
-
-RUN cd / \
-  && git clone --depth=50 --branch=master https://github.com/EricssonResearch/calvin-base calvin-base \
-  && cd /calvin-base \
-  && pip install --upgrade -r requirements.txt -r test-requirements.txt -e . 
+RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm gcc-fortran expect inetutils'
 
 # ETCD for python
 RUN cd /tmp \
@@ -49,8 +46,6 @@ RUN cd /tmp \
   && make \
   && make VERBOSE=1 \
   && make install 
-
-RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm expect inetutils'
 
 RUN pacman -Scc --noconfirm \
   &&  rm /var/cache/pacman/pkg/* \
