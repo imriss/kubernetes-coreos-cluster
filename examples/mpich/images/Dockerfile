@@ -15,7 +15,7 @@ RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 RUN ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
 RUN cd /root/.ssh && cp id_rsa.pub authorized_keys
 
-RUN apt-get install -y python-pip gfortran git jq xorg-dev build-essential libreadline6 libreadline6-dev && \
+RUN apt-get install -y python-pip gfortran git jq xorg-dev build-essential libreadline6 libreadline6-dev xorg-dev default-jre default-jdk liblzma-dev && \
     pip install --upgrade pip && \
     pip install etcd simplejson
 
