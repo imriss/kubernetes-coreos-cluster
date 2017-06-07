@@ -28,7 +28,7 @@ RUN cd /tmp && wget http://www.mpich.org/static/downloads/3.3a2/mpich-3.3a2.tar.
     tar xvfz mpich-3.3a2.tar.gz && cd mpich-3.3a2 && ./configure --prefix=/tmp/mpich && \
     make && make VERBOSE=1 && make install
 
-RUN apt-get install -y expect telnet curl strace nano r-base jq 
+RUN apt-get install -y expect telnet curl strace nano r-base jq dnsutils 
 
 RUN ulimit -n 1000 && \
     apt-get update && \
