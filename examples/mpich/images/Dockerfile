@@ -30,7 +30,7 @@ RUN cd /tmp && git clone https://github.com/jplana/python-etcd && cd python-etcd
 
 # MPICH3 Install
 RUN cd /tmp && wget http://www.mpich.org/static/downloads/3.3a2/mpich-3.3a2.tar.gz && \
-    tar xvfz mpich-3.3a2.tar.gz && cd mpich-3.3a2 && ./configure && \
+    tar xvfz mpich-3.3a2.tar.gz && cd mpich-3.3a2 && ./configure --prefix=/usr/local && \
     make && make VERBOSE=1 && make install
     
 # R Install
