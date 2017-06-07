@@ -15,7 +15,7 @@ RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 RUN ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
 RUN cd /root/.ssh && cp id_rsa.pub authorized_keys
 
-RUN apt-get install -y python-pip gfortran git jq && \
+RUN apt-get install -y python-pip gfortran git jq xorg-dev build-essential libreadline6 libreadline6-dev && \
     pip install --upgrade pip && \
     pip install etcd simplejson
 
@@ -27,8 +27,14 @@ RUN cd /tmp && git clone https://github.com/jplana/python-etcd && cd python-etcd
 RUN cd /tmp && wget http://www.mpich.org/static/downloads/3.3a2/mpich-3.3a2.tar.gz && \
     tar xvfz mpich-3.3a2.tar.gz && cd mpich-3.3a2 && ./configure --prefix=/tmp/mpich && \
     make && make VERBOSE=1 && make install
+    
+# R Install
+RUN cd /tmp && wget https://cran.r-project.org/src/base/R-3/R-3.4.0.tar.gz && \
+    tar xvfz R-3.4.0.tar.gz && cd R-3.4.0 && ./configure --enable-R-shlib && \
+    make && make install
+    
 
-RUN apt-get install -y expect telnet curl strace nano r-base jq dnsutils 
+RUN apt-get install -y expect telnet curl strace nano dnsutils 
 
 RUN ulimit -n 1000 && \
     apt-get update && \
