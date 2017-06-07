@@ -20,7 +20,7 @@ RUN cd /root/.ssh && cp id_rsa.pub authorized_keys
 #     apt-get dist-upgrade && \
 
 RUN apt-get update && \
-    apt-get install -y python-pip gfortran git jq xorg-dev build-essential libreadline6 libreadline6-dev xorg-dev default-jre default-jdk liblzma-dev libcurl4-openssl-dev libbz2-dev && \
+    apt-get install -y python-pip gfortran git jq xorg-dev build-essential libreadline6 libreadline6-dev xorg-dev default-jre default-jdk liblzma-dev libcurl4-openssl-dev libbz2-dev pcre pcre-devel && \
     pip install --upgrade pip && \
     pip install etcd simplejson
 
