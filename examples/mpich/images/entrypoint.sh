@@ -45,15 +45,16 @@ touch $MACHINE_FILE.old
 
 while true;
 do
-    /pod_ip.py > $MACHINE_FILE
-    /known_hosts.py $MACHINE_FILE > $FIRST_HOSTS
+    # /pod_ip.py > $MACHINE_FILE
+    # /known_hosts.py $MACHINE_FILE > $FIRST_HOSTS
     list=`cat $FIRST_HOSTS`
     for i in $list
     do
         /auto_ssh.sh $i
     done
 
-    wait_pods_update
+    # wait_pods_update
+    sleep 5
 
     cp $MACHINE_FILE $MACHINE_FILE.old
 
