@@ -42,7 +42,7 @@ RUN cd /tmp \
   && wget http://www.mpich.org/static/downloads/3.3a2/mpich-3.3a2.tar.gz \
   && tar xvfz mpich-3.3a2.tar.gz \
   && cd mpich-3.3a2 \
-  && ./configure --prefix=/tmp/mpich \
+  && ./configure \
   && make \
   && make VERBOSE=1 \
   && make install 
