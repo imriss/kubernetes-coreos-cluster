@@ -37,9 +37,9 @@ RUN cd /tmp && wget http://www.mpich.org/static/downloads/3.3a2/mpich-3.3a2.tar.
 RUN cd /tmp && wget https://cran.r-project.org/src/base/R-3/R-3.4.0.tar.gz && \
     tar xvfz R-3.4.0.tar.gz && cd R-3.4.0 && ./configure --enable-R-shlib && \
     make && make install && \
-    Rscript -e "install.packages('snow')" && \
-    Rscript -e "install.packages('Rmpi', configure.args = c('--with-Rmpi-type=MPICH2'))" && \
-    Rscript -e "install.packages('doMPI')" 
+    Rscript -e "install.packages('snow, repos='http://cran.us.r-project.org') && \
+    Rscript -e "install.packages('Rmpi', configure.args = c('--with-Rmpi-type=MPICH2'),repos='http://cran.us.r-project.org')" && \
+    Rscript -e "install.packages('doMPI', repos='http://cran.us.r-project.org')" 
    
 RUN apt-get install -y expect telnet curl strace nano dnsutils 
 
