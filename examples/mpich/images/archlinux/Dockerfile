@@ -46,6 +46,10 @@ RUN cd /tmp \
   && make \
   && make VERBOSE=1 \
   && make install 
+  
+RUN Rscript -e "install.packages('snow', repos='http://cran.us.r-project.org')" && \
+    Rscript -e "install.packages('Rmpi', configure.args = c('--with-Rmpi-type=MPICH2'),repos='http://cran.us.r-project.org')" && \
+    Rscript -e "install.packages('doMPI', repos='http://cran.us.r-project.org')" 
 
 RUN pacman -Scc --noconfirm \
   &&  rm /var/cache/pacman/pkg/* \
