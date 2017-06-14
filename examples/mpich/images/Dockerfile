@@ -42,7 +42,7 @@ RUN Rscript -e "install.packages(c('snow', 'getopt'), repos='http://cran.us.r-pr
     Rscript -e "install.packages('Rmpi', configure.args = c('--with-Rmpi-type=MPICH2'),repos='http://cran.us.r-project.org')" && \
     Rscript -e "install.packages('doMPI', repos='http://cran.us.r-project.org')" 
    
-RUN apt-get install -y expect telnet curl strace nano dnsutils 
+RUN apt-get install -y expect telnet curl strace nano dnsutils vcftools 
 
 RUN ulimit -n 1000 && \
     apt-get update && \
