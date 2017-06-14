@@ -50,6 +50,8 @@ RUN cd /tmp \
 RUN Rscript -e "install.packages(c('snow', 'getopt'), repos='http://cran.us.r-project.org')" && \
     Rscript -e "install.packages('Rmpi', configure.args = c('--with-Rmpi-type=MPICH2'),repos='http://cran.us.r-project.org')" && \
     Rscript -e "install.packages('doMPI', repos='http://cran.us.r-project.org')" 
+    
+RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm vcftools'
 
 RUN pacman -Scc --noconfirm \
   &&  rm /var/cache/pacman/pkg/* \
