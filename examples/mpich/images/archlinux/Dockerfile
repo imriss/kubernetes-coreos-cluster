@@ -47,7 +47,7 @@ RUN cd /tmp \
   && make VERBOSE=1 \
   && make install 
   
-RUN Rscript -e "install.packages('snow', repos='http://cran.us.r-project.org')" && \
+RUN Rscript -e "install.packages(c('snow', 'getopt'), repos='http://cran.us.r-project.org')" && \
     Rscript -e "install.packages('Rmpi', configure.args = c('--with-Rmpi-type=MPICH2'),repos='http://cran.us.r-project.org')" && \
     Rscript -e "install.packages('doMPI', repos='http://cran.us.r-project.org')" 
 
